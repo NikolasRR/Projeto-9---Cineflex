@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Seats from "./Seats";
@@ -13,9 +13,21 @@ function SeatSelection() {
 
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
-    
-    function test () {
-        console.log("baba ganush")
+
+    const navigate = useNavigate();
+
+    function reserveSeats(ev) {
+        ev.preventDefault();
+        const promisse = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
+            {
+                ids: reservedSeats,
+                name: name,
+                cpf: cpf
+            });
+        promisse.then(() => {
+            navigate("/sucesso", {state: { info: seats, reservedSeats: reservedSeats, name: name, cpf: cpf } });
+        });
+        promisse.catch(serverAnswer => console.log(serverAnswer.statusText));
     }
 
     useEffect(() => {
@@ -45,7 +57,7 @@ function SeatSelection() {
                     </article>
                 </section>
                 <section className="BuyerInfo">
-                    <form onSubmit={test}>
+                    <form onSubmit={reserveSeats}>
                         <label>Nome do comprador:</label>
                         <input onChange={ev => setName(ev.target.value)} type="text" placeholder="   Digite seu nome..." value={name} required></input>
                         <label>CPF do comprador:</label>
@@ -54,7 +66,7 @@ function SeatSelection() {
                     </form>
                 </section>
             </main>
-            <Footer movie={seats.movie} day={seats.day.weekday} session={seats.name}/>
+            <Footer movie={seats.movie} day={seats.day.weekday} session={seats.name} />
         </>
     ) : (
         <img className="loadingGIF" src={gif} alt="loading movies" />

@@ -11,12 +11,10 @@ function Seats({ seat, reservedSeats, setReservedSeats }) {
             const index  = array.indexOf(seatID);
             array.splice(index, 1);
             setReservedSeats([...array]);
-            console.log(array);
             return
         }
         array.push(seatID);
         setReservedSeats([...array]);
-        console.log(array);
     }
     const isAvailable = seat.isAvailable;
     const [selected, setSelected] = useState(false);
@@ -26,7 +24,7 @@ function Seats({ seat, reservedSeats, setReservedSeats }) {
     return (
         <div onClick={() => {
             setSelected(!selected);
-            reserveSeat(seat.id, seatState2);
+            reserveSeat(seat.name, seatState2);
         }} key={seat.id} className={seatState2}>
             {seat.name.toString().padStart(2, '0')}
         </div>

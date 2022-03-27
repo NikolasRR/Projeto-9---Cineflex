@@ -16,6 +16,7 @@
     font-weight: 400;
     font-size: 34px;
     line-height: 40px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .loadingGIF {
@@ -214,6 +215,45 @@ main h2 {
     margin: 50px 0 0 51px;
 }
 
+.Success article {
+    width: 327px;
+    padding-bottom: 25px;
+}
+
+.Success h2 {
+    color: #247A6B;
+    font-weight: 700;
+}
+
+.Success h5 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.04em;
+    color: #293845;
+    padding-bottom: 5px;
+}
+
+.Success p {
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0.04em;
+    color: #293845;
+}
+
+.Success button {
+    background: #E8833A;
+    border-radius: 3px;
+    width: 225px;
+    height: 42px;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 70px;
+}
+
 .Footer {
     position: fixed;
     bottom: 0;
@@ -238,7 +278,7 @@ main h2 {
     justify-content: center;
     width: 64px;
     height: 89px;
-    margin-top: 14px;
+    margin: 14px 0 14px 10px;
     background-color: #FFFFFF;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
