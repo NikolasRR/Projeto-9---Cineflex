@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header";
-import MovieSelection from "./MovieSelection";
-import SessionSelection from "./SessionSelection";
-
-import loading_gif from "../assets/imgs/loading_gif.gif";
+import MovieSelection from "./Screen 1/MovieSelection";
+import SessionSelection from "./Screen 2/SessionSelection";
+import SeatSelection from "./Screen 3/SeatSelection";
 
 function App() {
     return (
         <BrowserRouter>
             <Header />
             <Routes>
-                <Route path="/" element={<MovieSelection gif={loading_gif} />} />
+                <Route path="/" element={<MovieSelection />} />
                 <Route path="/filme/:MovieID" element={<SessionSelection /> } />
+                <Route path="/sessao/:SessionID" element={<SeatSelection />} />
             </Routes>
         </BrowserRouter>
     )
