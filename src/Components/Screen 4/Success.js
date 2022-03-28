@@ -1,9 +1,9 @@
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function Success () {
+function Success() {
     const location = useLocation();
     const navigate = useNavigate();
-    const {cpf, name, reservedSeats, info} = location.state;
+    const { cpf, name, reservedSeats, info } = location.state;
 
     return (
         <main className="Success">
@@ -15,7 +15,7 @@ function Success () {
             </article>
             <article>
                 <h5>Ingressos</h5>
-                {reservedSeats.map(seat => <p key={seat}>Assento {seat}</p>)}
+                {reservedSeats.map(seat => <p key={seat.ID}>Assento {seat.number.toString().padStart(2, '0')}</p>)}
             </article>
             <article>
                 <h5>Comprador</h5>

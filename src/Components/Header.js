@@ -1,7 +1,9 @@
+import {Link} from "react-router-dom";
+
 function Header () {
     return (
         <header className="Header" >
-            CINEFLEX
+            <Link style={{textDecoration: 'none', color:"inherit"}} to="/">CINEFLEX</Link>
         </header>
     );
 }

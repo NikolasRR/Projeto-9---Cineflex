@@ -18,21 +18,32 @@ function SeatSelection() {
 
     function reserveSeats(ev) {
         ev.preventDefault();
+        if (reservedSeats.length === 0) {
+            alert("Você não selecionou nenhum assento!");
+            return;
+        }
+
         const promisse = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
             {
+                ids: reservedSeats.map(seat => seat.ID),
+                name: name,
+                cpf: cpf
+            });
+        promisse.then(serverAnswer => {
+            console.log(serverAnswer);
+            navigate("/sucesso", {state: { info: seats, reservedSeats: reservedSeats, name: name, cpf: cpf } });
+            console.log({
                 ids: reservedSeats,
                 name: name,
                 cpf: cpf
             });
-        promisse.then(() => {
-            navigate("/sucesso", {state: { info: seats, reservedSeats: reservedSeats, name: name, cpf: cpf } });
         });
         promisse.catch(serverAnswer => console.log(serverAnswer.statusText));
     }
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${params.SessionID}/seats`);
-        promisse.then(serverAnswer => setSeats(serverAnswer.data));
+        promisse.then(serverAnswer => {setSeats(serverAnswer.data); console.log(serverAnswer)});
         promisse.catch(serverAnswer => console.log(serverAnswer.statusText));
     }, [params]);
     return seats.length !== 0 ? (

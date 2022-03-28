@@ -1,19 +1,19 @@
 import { useState } from "react";
 
 function Seats({ seat, reservedSeats, setReservedSeats }) {
-    function reserveSeat(seatID, unavailable) {
+    function reserveSeat(seatID, seatName, unavailable) {
         if (unavailable === "unavailable") {
             alert("Esse assento não está disponível");
             return
         }
         let array = [...reservedSeats];
-        if (array.includes(seatID)) {
-            const index  = array.indexOf(seatID);
+        if (array.find(seat => seat.ID === seatID)) {
+            const index = array.indexOf(seatID);
             array.splice(index, 1);
             setReservedSeats([...array]);
             return
         }
-        array.push(seatID);
+        array.push({ID: seatID, number: seatName});
         setReservedSeats([...array]);
     }
     const isAvailable = seat.isAvailable;
@@ -24,7 +24,7 @@ function Seats({ seat, reservedSeats, setReservedSeats }) {
     return (
         <div onClick={() => {
             setSelected(!selected);
-            reserveSeat(seat.name, seatState2);
+            reserveSeat(seat.id, seat.name, seatState2);
         }} key={seat.id} className={seatState2}>
             {seat.name.toString().padStart(2, '0')}
         </div>
